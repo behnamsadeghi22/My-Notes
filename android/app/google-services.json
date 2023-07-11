@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "128629852073",
+    "firebase_url": "https://b22ehnam-notes-default-rtdb.firebaseio.com",
+    "project_id": "b22ehnam-notes",
+    "storage_bucket": "b22ehnam-notes.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:128629852073:android:934bd243a4309ee268a6b8",
+        "android_client_info": {
+          "package_name": "com.behnam.cool"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "128629852073-lahef5oc5loj0onetgvcq3qo1dc2ji7s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVncXdCQk7XW739B66qKTaXOYkxrWeyIc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "128629852073-lahef5oc5loj0onetgvcq3qo1dc2ji7s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:128629852073:android:d51d168100d3947c68a6b8",
+        "android_client_info": {
+          "package_name": "com.example.notes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "128629852073-lahef5oc5loj0onetgvcq3qo1dc2ji7s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVncXdCQk7XW739B66qKTaXOYkxrWeyIc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "128629852073-lahef5oc5loj0onetgvcq3qo1dc2ji7s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
