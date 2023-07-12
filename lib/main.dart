@@ -1,3 +1,4 @@
+// ignore_for_file: use_build_context_synchronously
 import 'dart:developer' as devtools show log;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -20,6 +21,7 @@ void main() {
       routes: {
         "/login/": (context) => const LoginView(),
         "/register/": (context) => const RegisterView(),
+        "/notes/": (context) => const NotesView(),
       },
     ),
   );

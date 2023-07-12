@@ -1,3 +1,4 @@
+// ignore_for_file: use_build_context_synchronously
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as devtools show log;
@@ -69,13 +70,17 @@ class _LoginViewState extends State<LoginView> {
                 devtools.log(
                   userCredential.toString(),
                 );
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                  "/notes/",
+                  (route) => false,
+                );
               } on FirebaseAuthException catch (e) {
                 if (e.code == "user-not-found") {
-                  debugPrint(
+                  devtools.log(
                     "USER NOT FOUND",
                   );
                 } else if (e.code == "wrong-password") {
-                  debugPrint(
+                  devtools.log(
                     "WRONG PASSWORD",
                   );
                 }
@@ -87,8 +92,10 @@ class _LoginViewState extends State<LoginView> {
           ),
           TextButton(
             onPressed: () {
-              Navigator.of(context)
-                  .pushNamedAndRemoveUntil("/register/", (route) => false);
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                "/register/",
+                (route) => false,
+              );
             },
             child: const Text(
               "Not registered yet?...Register here!",
