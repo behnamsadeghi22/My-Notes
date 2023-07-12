@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'dart:developer' as devtools show log;
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -30,6 +31,7 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.teal,
         title: const Text(
           "Login",
         ),
@@ -64,7 +66,7 @@ class _LoginViewState extends State<LoginView> {
                   email: email,
                   password: password,
                 );
-                debugPrint(
+                devtools.log(
                   userCredential.toString(),
                 );
               } on FirebaseAuthException catch (e) {
