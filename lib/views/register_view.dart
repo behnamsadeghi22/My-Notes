@@ -1,7 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'dart:developer' as devtools show log;
 import 'package:notes/constants/routes.dart';
 import 'package:notes/utilities/show_error_dialog.dart';
 
@@ -62,13 +61,9 @@ class _RegisterViewState extends State<RegisterView> {
               final email = _email.text;
               final password = _password.text;
               try {
-                final userCredential =
-                    await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                await FirebaseAuth.instance.createUserWithEmailAndPassword(
                   email: email,
                   password: password,
-                );
-                devtools.log(
-                  userCredential.toString(),
                 );
                 final user = FirebaseAuth.instance.currentUser;
                 await user?.sendEmailVerification();
@@ -79,38 +74,27 @@ class _RegisterViewState extends State<RegisterView> {
                     context,
                     "Weak password",
                   );
-                  devtools.log(
-                    "WEAK-PASSWORD",
-                  );
                 } else if (e.code == "email-already-in-use") {
                   await showErrorDialog(
                     context,
                     "Email is already in use",
-                  );
-                  devtools.log(
-                    "EMAIL ALREADY IN USE",
                   );
                 } else if (e.code == "invalid-email") {
                   await showErrorDialog(
                     context,
                     "This is an invalid email address",
                   );
-                  devtools.log(
-                    "INVALID-EMAIL",
-                  );
                 } else {
                   await showErrorDialog(
                     context,
                     "Error : ${e.code}",
                   );
-                  devtools.log(e.code);
                 }
               } catch (e) {
                 await showErrorDialog(
                   context,
                   e.toString(),
                 );
-                devtools.log(e.toString());
               }
             },
             child: const Text(
