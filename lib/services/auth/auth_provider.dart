@@ -5,19 +5,16 @@ import 'package:notes/services/auth/auth_user.dart';
 // whereas an abstract class is a class that cannot be instantiated directly,
 // but can be used as a base class for other classes.
 abstract class AuthProvider {
+  Future<void> initialize();
   AuthUser? get currentUser;
-
   Future<AuthUser> logIn({
     required String email,
     required String password,
   });
-
   Future<AuthUser> createUser({
     required String email,
     required String password,
   });
-
   Future<void> logOut();
-
   Future<void> sendEmailVerification();
 }
