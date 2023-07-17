@@ -20,37 +20,35 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
           "Verify Email",
         ),
       ),
-      body: Center(
-        child: Column(
-          children: [
-            const Text(
-              "We've sent you an email verification, Please open it to verify your account",
+      body: Column(
+        children: [
+          const Text(
+            "We've sent you an email verification, Please open it to verify your account",
+          ),
+          const Text(
+            "If you haven't received a verification email yet, press the button below",
+          ),
+          TextButton(
+            onPressed: () async {
+              AuthSrvice.firebase().sendEmailVerification();
+            },
+            child: const Text(
+              "Send email verification",
             ),
-            const Text(
-              "If you haven't received a verification email yet, press the button below",
+          ),
+          TextButton(
+            onPressed: () async {
+              await AuthSrvice.firebase().logOut();
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                registerRoute,
+                (route) => false,
+              );
+            },
+            child: const Text(
+              "Restart",
             ),
-            TextButton(
-              onPressed: () async {
-                AuthSrvice.firebase().sendEmailVerification();
-              },
-              child: const Text(
-                "Send email verification",
-              ),
-            ),
-            TextButton(
-              onPressed: () async {
-                await AuthSrvice.firebase().logOut();
-                Navigator.of(context).pushNamedAndRemoveUntil(
-                  registerRoute,
-                  (route) => false,
-                );
-              },
-              child: const Text(
-                "Restart",
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

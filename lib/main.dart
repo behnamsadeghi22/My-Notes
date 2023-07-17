@@ -6,10 +6,14 @@ import 'package:notes/views/login_view.dart';
 import 'package:notes/views/notes_view.dart';
 import 'package:notes/views/register_view.dart';
 import 'package:notes/views/verify_email_view.dart';
-import 'firebase_options.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  // In Flutter, the WidgetsFlutterBinding class is responsible for connecting the framework to
+  // the underlying platform and providing the necessary bindings for rendering and handling user input.
+  // The ensureInitialized() method of WidgetsFlutterBinding is used to initialize the
+  // binding and its dependencies before the application starts running.
+  // This method is typically called at the beginning of the main() method of the application.
   runApp(
     MaterialApp(
       title: 'Flutter Demo',
@@ -22,7 +26,7 @@ void main() {
         loginRoute: (context) => const LoginView(),
         registerRoute: (context) => const RegisterView(),
         notesRoute: (context) => const NotesView(),
-        verifyEmailRoute:(context) => const VerifyEmailView(),
+        verifyEmailRoute: (context) => const VerifyEmailView(),
       },
     ),
   );
@@ -34,6 +38,11 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
+      // 1.When the FutureBuilder is built, it starts executing the Future that was passed to it.
+      // 2.While the Future is executing, the FutureBuilder displays a progress indicator or a placeholder widget.
+      // 3.When the Future completes with a result, the builder function is called with the result value as input.
+      // 4.The builder function then returns a widget tree based on the result value.
+      // 5.The FutureBuilder then rebuilds with the widget tree returned by the builder function, replacing the progress indicator or placeholder widget.
       future: AuthSrvice.firebase().initialize(),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
@@ -55,5 +64,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
-
