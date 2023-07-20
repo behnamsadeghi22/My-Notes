@@ -13,9 +13,13 @@ class NotesService {
   
   // create a singleton :\
   static final NotesService _shared = NotesService._sharedInstance();
+  // The _shared variable is declared as a static final variable,
+  // which means it can be accessed from anywhere in the code
   // it is just a private initializer of this class
   NotesService._sharedInstance();
   factory NotesService() => _shared;
+  // This factory constructor ensures that any attempts to create a
+  // new instance of the NotesService class will return the existing instance
 
   // everything going to be read from the outside through this
   final _notesStreamController =
