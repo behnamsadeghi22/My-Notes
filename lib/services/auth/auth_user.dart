@@ -3,10 +3,13 @@ import 'package:flutter/foundation.dart';
 
 @immutable
 class AuthUser {
+  final String? email;
   final bool isEmailVerified;
-  const AuthUser({required this.isEmailVerified});
+  const AuthUser({required this.email,required this.isEmailVerified});
 
   factory AuthUser.fromFirebase(User user) => AuthUser(
+        // this email string is read from firebase user
+        email: user.email,
         isEmailVerified: user.emailVerified,
       );
   // A factory constructor gives more flexibility to create an object.

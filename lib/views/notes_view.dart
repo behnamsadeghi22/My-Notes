@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 import 'package:flutter/material.dart';
 import 'package:notes/services/auth/auth_service.dart';
+import 'package:notes/services/auth/crud/notes_service.dart';
 import '../constants/routes.dart';
 import '../enums/menu_action.dart';
 
@@ -12,6 +13,21 @@ class NotesView extends StatefulWidget {
 }
 
 class _NotesViewState extends State<NotesView> {
+  late final NotesService _notesService;
+  String get userEmail => AuthSrvice.firebase().currentUser!.email!;
+
+  @override
+  void initState() {
+    _notesService = NotesService();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _notesService.close();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,12 +66,34 @@ class _NotesViewState extends State<NotesView> {
           ),
         ],
       ),
-      body: const Text(
-        "This is your notes",
+      body: FutureBuilder(
+        future: _notesService.getOrCreateUser(email: userEmail),
+        builder: (context, snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.done:
+              return StreamBuilder(
+                stream: _notesService.allNotes,
+                builder: (context, snapshot) {
+                  switch (snapshot.connectionState) {
+                    case ConnectionState.waiting:
+                      return const Text("Waiting for all notes");
+                    default:
+                      return const CircularProgressIndicator();
+                  }
+                },
+              );
+            default:
+              return const CircularProgressIndicator();
+          }
+        },
       ),
     );
   }
 }
+
+// In Flutter, AsyncSnapshot is a generic class that is used to represent the result of
+// an asynchronous operation. It is commonly used with FutureBuilder and StreamBuilder
+// widgets to handle asynchronous data loading and update the UI accordingly
 
 Future<bool> showLogOutDialog(BuildContext context) {
   return showDialog<bool>(
