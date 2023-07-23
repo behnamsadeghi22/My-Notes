@@ -10,7 +10,7 @@ class NotesService {
   Database? _db;
 
   List<DatabaseNote> _notes = [];
-  
+
   // create a singleton :\
   static final NotesService _shared = NotesService._sharedInstance();
   // The _shared variable is declared as a static final variable,

@@ -10,6 +10,9 @@ class AuthSrvice implements AuthProvider {
   factory AuthSrvice.firebase() => AuthSrvice(FirebaseAuthProvider());
   // We get access to our FirebaseAuthProvider() inside AuthSrvice , it's really magical
   // factory AuthSrvice.apple() => AuthSrvice(AppleAuthProvider());  : Example for Apple Authentication instead Firebase
+  // The factory constructor is named firebase,
+  // which means that it can be used to create instances of the
+  // AuthSrvice class using the syntax AuthSrvice.firebase()
 
   @override
   Future<void> initialize() => provider.initialize();

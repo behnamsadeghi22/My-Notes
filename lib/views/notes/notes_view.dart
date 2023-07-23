@@ -1,4 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:notes/services/auth/auth_service.dart';
 import 'package:notes/services/auth/crud/notes_service.dart';
@@ -61,12 +62,12 @@ class _NotesViewState extends State<NotesView> {
             itemBuilder: (context) {
               return [
                 const PopupMenuItem(
-                  // "child" is what the user see and the "value" is what you a developer see
+                  // "child" is what the user see and the "value" is what you as a developer see
                   value: MenuAction.logout,
                   child: Text(
                     "Log out",
                   ),
-                )
+                ),
               ];
             },
           ),
@@ -82,6 +83,7 @@ class _NotesViewState extends State<NotesView> {
                 builder: (context, snapshot) {
                   switch (snapshot.connectionState) {
                     case ConnectionState.waiting:
+                    case ConnectionState.active:
                       return const Text("Waiting for all notes");
                     default:
                       return const CircularProgressIndicator();
