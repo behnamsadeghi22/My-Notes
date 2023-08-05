@@ -12,18 +12,23 @@ class NotesService {
   List<DatabaseNote> _notes = [];
 
   // create a singleton :\
-  static final NotesService _shared = NotesService._sharedInstance();
   // The _shared variable is declared as a static final variable,
   // which means it can be accessed from anywhere in the code
   // it is just a private initializer of this class
-  NotesService._sharedInstance();
+  static final NotesService _shared = NotesService._sharedInstance();
+  NotesService._sharedInstance() {
+    _notesStreamController = StreamController<List<DatabaseNote>>.broadcast(
+      onListen: () {
+        _notesStreamController.sink.add(_notes);
+      },
+    );
+  }
   factory NotesService() => _shared;
   // This factory constructor ensures that any attempts to create a
   // new instance of the NotesService class will return the existing instance
 
   // everything going to be read from the outside through this
-  final _notesStreamController =
-      StreamController<List<DatabaseNote>>.broadcast();
+  late final StreamController<List<DatabaseNote>> _notesStreamController;
 
   Stream<List<DatabaseNote>> get allNotes => _notesStreamController.stream;
 
@@ -281,7 +286,11 @@ class DatabaseUser {
   DatabaseUser.fromRow(Map<String, Object?> map)
       : id = map[idColumn] as int,
         email = map[emailColumn] as String;
-  // We need to instantiated it from a row
+  // The id and email properties of the DatabaseUser object are set using values from the map parameter.
+  // The id property is set to the value of the idColumn key in the map,
+  // which is cast to an integer using the as keyword.
+  // The email property is set to the value of the emailColumn key in the map,
+  // which is cast to a string using the as keyword
 
   @override
   String toString() => 'Person, ID = $id , Email = $email';
@@ -328,7 +337,7 @@ class DatabaseNote {
 
   @override
   String toString() =>
-      "note, ID = $id, userId = $userId, isSyncedWithCloud = $isSyncedwithCloud, text = $text";
+      "note, ID = $id, User Id = $userId, Is synced with cloud? = $isSyncedwithCloud, Text = $text";
 
   @override
   bool operator ==(covariant DatabaseNote other) => id == other.id;

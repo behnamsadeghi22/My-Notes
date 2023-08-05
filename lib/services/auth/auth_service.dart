@@ -5,8 +5,8 @@ import 'package:notes/services/auth/firebase_auth_provider.dart';
 class AuthSrvice implements AuthProvider {
   final AuthProvider provider;
   const AuthSrvice(this.provider);
-  // AuthService provides a factory for FIREBASE , but it's not making an assumption about that : Heyyy..I'm always locked to FIREBASE , this is dependency injection
 
+  // AuthService provides a factory for FIREBASE , but it's not making an assumption about that : Heyyy..I'm always locked to FIREBASE , this is dependency injection
   factory AuthSrvice.firebase() => AuthSrvice(FirebaseAuthProvider());
   // We get access to our FirebaseAuthProvider() inside AuthSrvice , it's really magical
   // factory AuthSrvice.apple() => AuthSrvice(AppleAuthProvider());  : Example for Apple Authentication instead Firebase
