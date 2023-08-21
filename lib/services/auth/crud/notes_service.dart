@@ -11,10 +11,17 @@ class NotesService {
 
   List<DatabaseNote> _notes = [];
 
-  // create a singleton :\
+  // A Singleton is a design pattern often used in software development when
+  // a system needs to coordinate actions across a system and restricts instantiation
+  // of a class to a single object providing a global point of access.
+  // It's used when exactly one object is needed to coordinate actions across the system
+  // In Flutter, you can create a Singleton by defining a static variable
+  // in your class as the single instance, and by making the class constructor private.
+  // This ensures that the class is instantiated only once
   // The _shared variable is declared as a static final variable,
   // which means it can be accessed from anywhere in the code
   // it is just a private initializer of this class
+  // The Singleton class cannot be instantiated outside the file where it is defined
   static final NotesService _shared = NotesService._sharedInstance();
   NotesService._sharedInstance() {
     _notesStreamController = StreamController<List<DatabaseNote>>.broadcast(
@@ -23,6 +30,9 @@ class NotesService {
       },
     );
   }
+  // In summary, this code creates a Singleton instance of the NotesService
+  // class and initializes a broadcast StreamController that emits a
+  // list of DatabaseNote objects whenever a listener starts listening to the stream
   factory NotesService() => _shared;
   // This factory constructor ensures that any attempts to create a
   // new instance of the NotesService class will return the existing instance
@@ -256,10 +266,13 @@ class NotesService {
     // make sure note exists
     await getNote(id: note.id);
     // update db
-    final updateCount = await db.update(noteTable, {
-      textCulomn: text,
-      isSyncedWithCloudColumn: 0,
-    });
+    final updateCount = await db.update(
+      noteTable,
+      {
+        textCulomn: text,
+        isSyncedWithCloudColumn: 0,
+      },
+    );
 
     if (updateCount == 0) {
       throw CouldNotUpdateNoteException();

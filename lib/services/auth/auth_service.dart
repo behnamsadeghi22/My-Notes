@@ -13,7 +13,7 @@ class AuthSrvice implements AuthProvider {
   // The factory constructor is named firebase,
   // which means that it can be used to create instances of the
   // AuthSrvice class using the syntax AuthSrvice.firebase()
-
+ 
   @override
   Future<void> initialize() => provider.initialize();
 
