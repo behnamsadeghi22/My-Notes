@@ -97,7 +97,7 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
           switch (snapshot.connectionState) {
             case ConnectionState.done:
               _setupTextControllerListener();
-              return TextField(
+              return TextField( 
                 controller: _textController,
                 keyboardType: TextInputType.multiline,
                 maxLines: 1,
