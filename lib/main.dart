@@ -47,11 +47,11 @@ class HomePage extends StatelessWidget {
       // 3.When the Future completes with a result, the builder function is called with the result value as input.
       // 4.The builder function then returns a widget tree based on the result value.
       // 5.The FutureBuilder then rebuilds with the widget tree returned by the builder function, replacing the progress indicator or placeholder widget.
-      future: AuthSrvice.firebase().initialize(),
+      future: AuthService.firebase().initialize(),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.done:
-            final user = AuthSrvice.firebase().currentUser;
+            final user = AuthService.firebase().currentUser;
             if (user != null) {
               if (user.isEmailVerified) {
                 return const NotesView();

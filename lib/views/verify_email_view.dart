@@ -30,7 +30,7 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
           ),
           TextButton(
             onPressed: () async {
-              AuthSrvice.firebase().sendEmailVerification();
+              AuthService.firebase().sendEmailVerification();
             },
             child: const Text(
               "Send email verification",
@@ -38,7 +38,7 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
           ),
           TextButton(
             onPressed: () async {
-              await AuthSrvice.firebase().logOut();
+              await AuthService.firebase().logOut();
               Navigator.of(context).pushNamedAndRemoveUntil(
                 loginRoute,
                 (route) => false,

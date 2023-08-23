@@ -50,8 +50,8 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
     if (existingNote != null) {
       return existingNote;
     }
-    final currentUser = AuthSrvice.firebase().currentUser!;
-    final email = currentUser.email!;
+    final currentUser = AuthService.firebase().currentUser!;
+    final email = currentUser.email;
     final owner = await _notesService.getUser(email: email);
     final newNote = await _notesService.createNote(owner: owner);
     _note = newNote;
@@ -97,7 +97,7 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
           switch (snapshot.connectionState) {
             case ConnectionState.done:
               _setupTextControllerListener();
-              return TextField( 
+              return TextField(
                 controller: _textController,
                 keyboardType: TextInputType.multiline,
                 maxLines: 1,
