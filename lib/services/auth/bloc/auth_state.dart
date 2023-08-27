@@ -10,16 +10,11 @@ class AuthStateLoading extends AuthState {
   const AuthStateLoading();
 }
 
-// when you loggen in to the application , what does the application actualyy need from us?
+// when you loggen in to the application , what does the application actually need from us?
 // The only thing the application need from us is currentUser
 class AuthStateLoggedIn extends AuthState {
   final AuthUser user;
   const AuthStateLoggedIn(this.user);
-}
-
-class AuthStateLogInFailure extends AuthState {
-  final Exception exception;
-  const AuthStateLogInFailure(this.exception);
 }
 
 class AuthStateNeedsVerification extends AuthState {
@@ -27,7 +22,8 @@ class AuthStateNeedsVerification extends AuthState {
 }
 
 class AuthStateLoggedOut extends AuthState {
-  const AuthStateLoggedOut();
+  final Exception? exception;
+  const AuthStateLoggedOut(this.exception);
 }
 
 class AuthStateLogoutFailure extends AuthState {
