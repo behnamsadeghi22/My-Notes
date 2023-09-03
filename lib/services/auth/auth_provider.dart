@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:notes/services/auth/auth_user.dart';
 
 // abstract classes are used as a base class for other classes.
@@ -17,4 +19,5 @@ abstract class AuthProvider {
   });
   Future<void> logOut();
   Future<void> sendEmailVerification();
+  Future<void> sendPasswordReset({required String toEmail});
 }

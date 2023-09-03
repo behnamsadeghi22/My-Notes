@@ -10,9 +10,12 @@ CloseDialog showLoadingDialog({
     content: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
+        const SizedBox(
+          height: 20.0,
+        ),
         const CircularProgressIndicator(),
         const SizedBox(
-          height: 10.0,
+          height: 20.0,
         ),
         Text(text),
       ],

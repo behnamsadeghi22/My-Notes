@@ -16,38 +16,40 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.teal,
         title: const Text(
           "Verify Email",
         ),
       ),
-      body: Column(
-        children: [
-          const Text(
-            "We've sent you an email verification, Please open it to verify your account",
-          ),
-          const Text(
-            "If you haven't received a verification email yet, press the button below",
-          ),
-          TextButton(
-            onPressed: () {
-              context
-                  .read<AuthBloc>()
-                  .add(const AuthEventSendEmailVerification());
-            },
-            child: const Text(
-              "Send email verification",
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            const Text(
+              "We've sent you an email verification, Please open it to verify your account",
             ),
-          ),
-          TextButton(
-            onPressed: () {
-              context.read<AuthBloc>().add(const AuthEventLogOut());
-            },
-            child: const Text(
-              "Restart",
+            const Text(
+              "If you haven't received a verification email yet, press the button below",
             ),
-          ),
-        ],
+            TextButton(
+              onPressed: () {
+                context
+                    .read<AuthBloc>()
+                    .add(const AuthEventSendEmailVerification());
+              },
+              child: const Text(
+                "Send email verification",
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                context.read<AuthBloc>().add(const AuthEventLogOut());
+              },
+              child: const Text(
+                "Restart",
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
