@@ -55,7 +55,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
           child: Column(
             children: [
               const Text(
-                'If you forgot your password, simply enter your email and wewill send you a password reset link',
+                'If you forgot your password, simply enter your email and we will send you a password reset link',
               ),
               TextField(
                 keyboardType: TextInputType.emailAddress,
