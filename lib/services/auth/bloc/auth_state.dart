@@ -9,7 +9,7 @@ abstract class AuthState {
 
   const AuthState({
     required this.isLoading,
-    this.loadingText = 'Plaese wait a moment',
+    this.loadingText = 'Please wait a moment',
   });
 }
 

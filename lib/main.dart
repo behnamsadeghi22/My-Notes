@@ -22,7 +22,7 @@ void main() {
   // This method is typically called at the beginning of the main() method of the application.
   runApp(
     MaterialApp(
-      debugShowCheckedModeBanner: true,
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
